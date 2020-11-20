@@ -1,11 +1,11 @@
 import sqlite3
 
 
-conn = sqlite3.connect('db_veiculos.db')
+conn = sqlite3.connect('db_concessionaria.db')
 cursor = conn.cursor()
 
 # cursor.execute("""
-# CREATE TABLE veiculos (
+# CREATE TABLE veiculos(
 #         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 #         nome Varchar(50),
 #         marca TEXT NOT NULL,
@@ -30,7 +30,8 @@ conn.close()
 
 class Veiculo: 
 
-    def __init__(self, nome, marca, modelo, cor, placa, proprietario, num_portas, km_rodado, qtd_passageiros, ano, valor, motor, combustivel, meio_locomocao):
+    def __init__(self, nome, marca, modelo, cor, placa, proprietario, num_portas, km_rodado, 
+                qtd_passageiros, ano, valor, motor, combustivel, meio_locomocao):
         self.marca = marca
         self.modelo = modelo
         self.ano = ano
@@ -52,10 +53,10 @@ class Veiculo:
         sql = bd.cursor()
         
         sql.execute('''
-            INSERT INTO veiculos (nome, marca, modelo, cor, placa,
+            INSERT INTO veiculos(nome, marca, modelo, cor, placa,
             proprietario, num_portas, km_rodado, qtd_passageiros, ano,
             valor, motor, combustivel, meio_locomocao)
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);''',
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?);''',
             (
                 str(self.nome),
                 str(self.marca),
@@ -79,8 +80,8 @@ class Veiculo:
 
 def cadastro_veiculo():
     print("\n\t__________CADASTRO DE VEÍCULOS__________\n")
-    nome = input('Nome do Carro: '),
-    marca = input("Marca: "),
+    nome = str(input("Nome do Carro: ")),
+    marca = str(input("Marca: ")),
     modelo = input("Modelo: ")
     cor = input("Cor: ")
     placa = input("Placa: ")
